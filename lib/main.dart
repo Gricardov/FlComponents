@@ -14,11 +14,17 @@ class MyApp extends StatelessWidget {
       //home: const CardScreen(),
       initialRoute: 'home',
       routes: {
-        "home"      : (BuildContext context) => const HomeScreen(),
-        "ListView1" : (BuildContext context) => const ListView1Screen(),
-        "ListView2" : (BuildContext context) => const ListView2Screen(),
-        "alert"     : (BuildContext context) => const AlertScreen(),
-        "card"      : (BuildContext context) => const CardScreen(),
+        "home": (BuildContext context) => const HomeScreen(),
+        "ListView1": (BuildContext context) => const ListView1Screen(),
+        "ListView2": (BuildContext context) => const ListView2Screen(),
+        "alert": (BuildContext context) => const AlertScreen(),
+        "card": (BuildContext context) => const CardScreen(),
+      },
+      onGenerateRoute: (settings) {
+        // Aquí entra cuando una ruta no existe (ruta dinámica)
+        // Devuelve otra ruta
+        print(settings);
+        return MaterialPageRoute(builder: (context) => const ListView1Screen());
       },
     );
   }
