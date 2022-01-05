@@ -2,7 +2,10 @@ import 'package:fl_components/theme/app_theme.dart';
 import 'package:flutter/material.dart';
 
 class CustomCard2 extends StatelessWidget {
-  const CustomCard2({Key? key}) : super(key: key);
+  final String imgUrl;
+  final String? name;
+
+  const CustomCard2(this.imgUrl, {Key? key, this.name}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,21 +16,23 @@ class CustomCard2 extends StatelessWidget {
       shadowColor: AppTheme.primary.withOpacity(0.1),
       child: Column(
         children: [
-          const FadeInImage(
-            image: NetworkImage(
-                'https://i.pinimg.com/564x/37/2d/b8/372db8613a08165de34deba50105ff84.jpg'),
-            placeholder: AssetImage('assets/jar-loading.gif'),
+          FadeInImage(
+            image: NetworkImage(imgUrl),
+            placeholder: const AssetImage('assets/jar-loading.gif'),
             width: double.infinity,
             height: 230,
             fit: BoxFit.cover,
-            fadeInDuration: Duration(
+            fadeInDuration: const Duration(
               milliseconds: 300,
             ),
           ),
-          Container(
-              alignment: AlignmentDirectional.centerEnd,
-              padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
-              child: Text('Un hermoso paisaje'))
+
+          // Condicional dentro de arreglo
+          if (name != null)
+            Container(
+                alignment: AlignmentDirectional.centerEnd,
+                padding: const EdgeInsets.only(right: 20, top: 10, bottom: 10),
+                child: Text(name!)) // También puede quedarse como: name ?? 'No title'
         ],
       ),
     );

@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
 
 class AlertScreen extends StatelessWidget {
-   
   const AlertScreen({Key? key}) : super(key: key);
-  
+
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-         child: Text('AlertScreen'),
+        child: ElevatedButton(
+            // style: , Puedes sobreescribir el estilo del tema
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Text(
+                'Mostrar alerta',
+                style: TextStyle(fontSize: 20),
+              ),
+            )),
       ),
+      floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.close), onPressed: () {}),
     );
   }
 }
