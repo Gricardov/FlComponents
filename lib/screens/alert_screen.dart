@@ -1,9 +1,12 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AlertScreen extends StatelessWidget {
   const AlertScreen({Key? key}) : super(key: key);
 
-  void displayDialog(BuildContext context) {
+  void displayDialogAndroid(BuildContext context) {
     showDialog(
         barrierDismissible: true,
         context: context,
@@ -26,9 +29,44 @@ class AlertScreen extends StatelessWidget {
             actions: [
               TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text('Cancelar'))
+                  child: const Text('Cancelar')),
+              TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text('Ok'))
             ],
           );
+        });
+  }
+
+  void displayDialogIOS(BuildContext context) {
+    showCupertinoDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (context) {
+          return CupertinoAlertDialog(
+              title: const Text('Título'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Text('Este es el contenido'),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  FlutterLogo(size: 100)
+                ],
+              ),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(context),
+                  child: const Text(
+                    'Cancelar',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
+                TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('Ok'))
+              ]);
         });
   }
 
@@ -38,7 +76,9 @@ class AlertScreen extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
             // style: , Puedes sobreescribir el estilo del tema
-            onPressed: () => displayDialog(context),
+            onPressed: () => Platform.isAndroid
+                ? displayDialogAndroid(context)
+                : displayDialogIOS(context),
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Text(
