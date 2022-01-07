@@ -6,24 +6,36 @@ class AvatarScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Paté de Fuá'),
-        actions: [
-          Container(
-            margin: const EdgeInsets.only(right: 5),
-            child: CircleAvatar(
-              child: const Text('PF'),
-              backgroundColor: Colors.indigo[900],
-            ),
-          )
-        ],
-      ),
-      body: const Center(
+        appBar: AppBar(
+          title: const Text('Paté de Fuá'),
+          actions: [
+            Container(
+              margin: const EdgeInsets.only(right: 5),
+              child: CircleAvatar(
+                child: const Text('PF'),
+                backgroundColor: Colors.indigo[900],
+              ),
+            )
+          ],
+        ),
+        body: const Center(
+            child: FadeInImage(
+          image: NetworkImage(
+              'https://rock101online.mx/wp-content/uploads/2021/03/Pate-de-Fua-Amores-Ajenos-scaled.jpg'),
+          placeholder: AssetImage('assets/jar-loading.gif'),
+          width: double.infinity,
+          height: 230,
+          fit: BoxFit.cover,
+          fadeInDuration: Duration(
+            milliseconds: 300,
+          ),
+        ))
+        /*body: const Center(
         child: CircleAvatar(
           maxRadius: 110,
           backgroundImage: NetworkImage('https://rock101online.mx/wp-content/uploads/2021/03/Pate-de-Fua-Amores-Ajenos-scaled.jpg'),
         ),
-      ),
-    );
+      ),*/
+        );
   }
 }
