@@ -1,3 +1,4 @@
+import 'package:fl_components/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class InputsScreen extends StatelessWidget {
@@ -11,47 +12,40 @@ class InputsScreen extends StatelessWidget {
         ),
         body: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
-              children: [
-                TextFormField(
-                  autofocus: true,
-                  initialValue: 'Temple Luna',
-                  textCapitalization: TextCapitalization.words,
-                  onChanged: (value) {
-                    print(value);
-                  },
-                  validator: (value) {
-                    if (value == null) return 'Este campo es requerido';
-                    return value.length < 3 ? 'Mínimo 3 letras' : null;
-                  },
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
-                  decoration: const InputDecoration(
-                      hintText: 'Nombre del usuario',
-                      labelText: 'Nombre',
-                      helperText: 'Solo letras',
-                      counterText: '3 caracteres',
-                      prefixIcon: Icon(Icons.verified_user_outlined),
-                      suffixIcon: Icon(Icons.group_outlined),
-                      icon: Icon(Icons.assignment_ind_outlined),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.green),
-                      ),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(10),
-                              topRight: Radius.circular(10)))),
+              children: const [
+                CustomInputField(
+                  labelText: 'Nombre',
+                  hintText: 'Nombre del usuario',
                 ),
-                TextFormField(),
-                TextFormField(),
-                TextFormField(),
-                TextFormField(),
-                TextFormField(),
-                TextFormField(),
-                TextFormField(),
-                TextFormField(),
-                TextFormField(),
-                TextFormField()
+                SizedBox(
+                  height: 30,
+                ),
+                CustomInputField(
+                  labelText: 'Apellido',
+                  hintText: 'Apellido del usuario',
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                CustomInputField(
+                  labelText: 'Correo',
+                  hintText: 'Correo del usuario',
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                CustomInputField(
+                  labelText: 'Contraseña',
+                  hintText: 'Contraseña del usuario',
+                  isPassword: true,
+                  keyboardType: TextInputType.emailAddress,
+                ),
+                SizedBox(
+                  height: 30,
+                ),
               ],
             ),
           ),
