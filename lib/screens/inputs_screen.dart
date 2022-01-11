@@ -28,37 +28,62 @@ class InputsScreen extends StatelessWidget {
               key: myFormKey,
               child: Column(
                 children: [
-                  const CustomInputField(
+                  CustomInputField(
                     labelText: 'Nombre',
                     hintText: 'Nombre del usuario',
+                    formProperty: 'first_name',
+                    formValues: formValues,
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  const CustomInputField(
+                  CustomInputField(
                     labelText: 'Apellido',
                     hintText: 'Apellido del usuario',
+                    formProperty: 'last_name',
+                    formValues: formValues,
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  const CustomInputField(
+                  CustomInputField(
                     labelText: 'Correo',
                     hintText: 'Correo del usuario',
                     keyboardType: TextInputType.emailAddress,
+                    formProperty: 'email',
+                    formValues: formValues,
                   ),
                   const SizedBox(
                     height: 30,
                   ),
-                  const CustomInputField(
+                  CustomInputField(
                     labelText: 'Contraseña',
                     hintText: 'Contraseña del usuario',
                     isPassword: true,
                     keyboardType: TextInputType.emailAddress,
+                    formProperty: 'password',
+                    formValues: formValues,
                   ),
                   const SizedBox(
                     height: 30,
                   ),
+                  DropdownButtonFormField<String>(
+                      items: const [
+                        DropdownMenuItem(
+                          value: 'admin',
+                          child: Text('Admin'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'superuser',
+                          child: Text('SuperUser'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'developer',
+                          child: Text('Developer'),
+                        )
+                      ],
+                      onChanged: (String? value) =>
+                          formValues['role'] = value ?? 'Admin'),
                   ElevatedButton(
                       onPressed: () {
                         // Desactivo el teclado
